@@ -9,6 +9,7 @@ const app = express();
 
 const USER_COOKIE_KEY = 'USER';
 const USERS_JSON_FILENAME = path.join(__dirname, 'db', 'users.json');
+const MENUS_FILENAME = path.join(__dirname, 'db', 'menu.json');
 const saltRounds = 10;
 
 
@@ -108,6 +109,22 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/edit', (req, res) => {
+    
+});
+
+app.post('/edit', async (req, res) => {
+    const { itemName, price } = req.body;
+    
+    const newMenu = {
+        itemName,
+        price
+    };
+    await createMenu(newMenu);
+
+    res.redirect('/edit');
+});
+
 
 
 app.listen(7394, () => {
@@ -143,6 +160,43 @@ async function createUser(newUser) {
 
 
 async function removeUser(ID, password) {
+    const userData = await fetchUser(ID);
+    if (userData.password === password) {
+        const users = await fetchAllUsers();
+        const index = users.findIndex((u) => u.ID === ID);
+        users.splice(index, 1);
+        await fs.writeFile(USERS_JSON_FILENAME, JSON.stringify(users));
+    }
+}
+
+
+
+
+
+async function fetchAllMenus() {
+    const data = await fs.readFile(MENUS_FILENAME);
+    const menus = JSON.parse(data.toString());
+    return menus;
+}
+
+async function fetchMenu(itemCode) {
+    const users = await fetchAllUsers();
+    const user = users.find((user) => user.ID === userid);
+    return user;
+}
+
+async function createMenu(newUser) {
+    const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
+    const users = await fetchAllUsers();
+    users.push({
+        ...newUser,
+        password: hashedPassword,
+    });
+    await fs.writeFile(USERS_JSON_FILENAME, JSON.stringify(users));
+}
+
+
+async function removeMenu(ID, password) {
     const userData = await fetchUser(ID);
     if (userData.password === password) {
         const users = await fetchAllUsers();
