@@ -1,1 +1,2 @@
-[{"name":"이가영","ID":"rose","password":"$2b$10$y/dYqkJ1tsadLabNBa4eM.BDC3Py6.kGHEvoopALPGAVw.wRBELdG"}]
+[{"name":"이가영","userId":"rose","password":"$2b$10$gZ/dB/g0np0RDyzGaRbSkuZGlVRKJHo7GMpCs7RLfOu1VHEneMlqW","shopId":"f58b0fa3-9357-493e-ac8d-e009ef3ea9bb"},
+{"name":"최윤정","userId":"ch","password":"$2b$10$V5u5pFjwhkAfBYw1T.srAusbCoRkmX6Kmqm8RIqP99LhznQQxjwQm","shopId":"07111734-17fc-43cc-9c97-e9e60c29c17f"}]

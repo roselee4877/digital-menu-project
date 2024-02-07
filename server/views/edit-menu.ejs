@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+    <br>
+    <form method="POST" action="/edit">
+        <label for="itemName">item name: </label>
+        <input type="text" name="itemName" />
+        <br/>
+        <label for="price">price: </label>
+        <input type="text" name="price" />
+        <br/>
+        <button>메뉴 추가</button>
+        <br/>
+        <button type="button" onclick="location.href='/'">완료</button>
+    </form>
+    
+    <ul>
+        <% for (let i = 0; i < items.length; i++) { %>
+            <hr>
+            <%= items[i].itemName %>,
+            <%= items[i].price %>
+        <% } %>
+    </ul>
+    
+</body>
+</html>

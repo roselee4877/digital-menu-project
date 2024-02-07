@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+    <a href="/logout">로그아웃</a>
+    <a href="/withdraw">회원 탈퇴</a>
+    <br>
+    <button type="button" onclick="location.href='/edit'">+</button>
+    <ul>
+        <% for (let i = 0; i < items.length; i++) { %>
+            <hr>
+            <%= items[i].itemName %>,
+            <%= items[i].price %>
+        <% } %>
+    </ul>
+</body>
+</html>
